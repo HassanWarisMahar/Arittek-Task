@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contact List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
+                [[${#request.userPrincipal.principal.fullName}]]</a></li>
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container text-center">
+
+    <h1>CONTACT LIST</h1>
+
+    <div>
+        <nobr>
+            <a class="btn-link btn-info"  th:href="@{/contacts/add}"><h2>Add <Contact></Contact></h2></a>
+        </nobr>
+    </div>
+    <br/><br/>
+
+    <div>
+        <table class="table table-striped table-bordered table-dark">
+            <tr >
+                <th class="text-center" >Contact Id</th>
+                <th class="text-center">Name</th>
+                <th class="text-center" >Phone</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Edit</th>
+            </tr>
+            <tr th:each="contact : ${contacts}">
+                <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.id}">...</a></td>
+                <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.name}">...</a></td>
+                <td th:utext="${contact.phone}">...</td>
+                <td th:utext="${contact.email}">...</td>
+                <td><a th:href="@{/contacts/{contactId}/edit(contactId=${contact.id})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+    <br/><br/>
+    <div class="align-items-center">
+        <nobr>
+            <span class="text-dark" th:if="${hasPrev}"><a th:href="@{/contacts?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
+            <span class="text-dark" th:if="${hasNext}"><a th:href="@{/contacts?page={next}(next=${next})}">Next</a></span>
+        </nobr>
+    </div>
+</div>
+</body>
+</html>

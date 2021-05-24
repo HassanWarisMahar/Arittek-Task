@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>View Contact</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
+                [[${#request.userPrincipal.principal.fullName}]]</a></li>
+            <li>
+                <a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container align-content-center">
+
+    <h1>View Contact</h1>
+    <a th:href="@{/contacts}">Back to Contact List</a>
+    <br/><br/>
+    <div th:if="${contact}">
+        <table border="0">
+            <tr>
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${contact.id}">...</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td th:utext="${contact.name}">...</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td th:utext="${contact.phone}">...</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td th:utext="${contact.email}">...</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>:</td>
+                <td th:utext="${contact.address1}">...</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td th:utext="${contact.address2}">...</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td th:utext="${contact.address3}">...</td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td>:</td>
+                <td th:utext="${contact.postalCode}">...</td>
+            </tr>
+            <tr>
+                <td>Notes</td>
+                <td>:</td>
+                <td th:utext="${contact.note}">...</td>
+            </tr>
+        </table>
+        <br/><br/>
+        <div th:if="not ${allowDelete}">
+            <a th:href="@{/contacts/{contactId}/edit(contactId=${contact.id})}">Edit</a> |
+            <a th:href="@{/contacts/{contactId}/delete(contactId=${contact.id})}">Delete</a>
+        </div>
+        <form th:if="${allowDelete}" th:action="@{/contacts/{contactId}/delete(contactId=${contact.id})}" method="POST">
+            Delete this contact? <input type="submit" th:value="Yes"/>
+        </form>
+    </div>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${add} ? 'Create a Contact' : 'Edit a Contact'"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>[[${#request.userPrincipal.principal.fullName}]]</a>
+            </li>
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container justify-content-center h-100  align-content-center">
+    <h1 th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'"/>
+    <a th:href="@{/contacts}">Back to Contact List</a>
+    <br/><br/>
+    <form th:action="${add} ? @{/contacts/add} : @{/contacts/{contactId}/edit(contactId=${contact.id})}"
+          th:object="${contact}" method="POST">
+        <table border="0">
+            <tr th:if="${contact.id}">
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${contact.id}">...</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{phone}"/></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{email}"/></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{address1}" size="50"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="text" th:field="*{address2}" size="50"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="text" th:field="*{address3}" size="50"/></td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{postalCode}"/></td>
+            </tr>
+            <tr>
+                <td>Notes</td>
+                <td>:</td>
+                <td><textarea th:field="*{note}" rows="4" cols="50"/></td>
+            </tr>
+        </table>
+        <input type="submit" th:value="${add} ? 'Create' : 'Update'"/>
+    </form>
+
+</div>
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+</body>
+</html>
