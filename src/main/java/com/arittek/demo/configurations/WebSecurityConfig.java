@@ -18,55 +18,56 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new CustomUserDetailsService();
-	}
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService();
+    }
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
-		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(userDetailsService());
-		authProvider.setPasswordEncoder(passwordEncoder());
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
 
-		return authProvider;
-	}
+        return authProvider;
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider());
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/users").authenticated()
-			.antMatchers("/contacts").authenticated()
-			.antMatchers("/contacts/{coontactID}").authenticated()
-			.antMatchers("/contacts/{coontactID}/edit").authenticated()
-			.antMatchers("/contacts/{coontactID}/delete").authenticated()
-			.antMatchers("/contacts/add").authenticated()
-			.anyRequest().permitAll()
-			.and()
-			.formLogin()
-				.loginPage("/login")
-				.usernameParameter("email")
-				.defaultSuccessUrl("/contacts")
-				.permitAll()
-			.and()
-			.logout().logoutSuccessUrl("/").permitAll();
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**").permitAll()
+                .antMatchers("/users").authenticated()
+                .antMatchers("/contacts").authenticated()
+                .antMatchers("/contacts/{coontactID}").authenticated()
+                .antMatchers("/contacts/{coontactID}/edit").authenticated()
+                .antMatchers("/contacts/{coontactID}/delete").authenticated()
+                .antMatchers("/contacts/add").authenticated()
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/contacts")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll();
 
 
-
-	}
+    }
 
 
 }

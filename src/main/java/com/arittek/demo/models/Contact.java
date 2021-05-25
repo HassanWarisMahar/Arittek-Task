@@ -25,14 +25,14 @@ public class Contact implements Serializable {
     private static final long serialVersionUID = 4048798961366546485L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
     @Size(max = 100)
     private String name;
 
-    @Pattern(regexp ="^\\+?[0-9. ()-]{7,25}$", message = "Phone number")
+    @Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Phone number")
     @Size(max = 25)
     private String phone;
 

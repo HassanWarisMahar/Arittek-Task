@@ -8,9 +8,13 @@
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
+
+    <meta th:if="${authorized}" http-equiv="refresh" content="0; url = '/contacts'"/>
+
 </head>
 <body>
 <br><br><br>
+<!--<p th:if="${isExistsUser}" class="error"><a href="contact-list.html">Contact list</a></p>-->
 <div class="container text-center h-100 signup-form ">
     <div class="row h-100 justify-content-center align-items-center">
 
@@ -18,7 +22,8 @@
               method="post" style="max-width: 600px; margin: 0 auto;">
             <div>
                 <h2>Register</h2>
-                <span class="text-danger" ></span>
+                <span th:if="${isExistsUser}" class="text-danger" th:text="${emailAlreadyExists}"></span>
+                <span class="text-danger"></span>
             </div>
             <div class="m-8">
                 <div class="form-group">

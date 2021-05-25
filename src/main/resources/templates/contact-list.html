@@ -38,23 +38,28 @@
 
     <div>
         <nobr>
-            <a class="btn-link btn-info"  th:href="@{/contacts/add}"><h2>Add <Contact></Contact></h2></a>
+            <a class="btn-link btn-info" th:href="@{/contacts/add}">
+                <h2>Add
+                    <Contact></Contact>
+                </h2>
+            </a>
         </nobr>
     </div>
     <br/><br/>
 
     <div>
         <table class="table table-striped table-bordered table-dark">
-            <tr >
-                <th class="text-center" >Contact Id</th>
+            <tr>
+                <th class="text-center">Contact Id</th>
                 <th class="text-center">Name</th>
-                <th class="text-center" >Phone</th>
+                <th class="text-center">Phone</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Edit</th>
             </tr>
             <tr th:each="contact : ${contacts}">
                 <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.id}">...</a></td>
-                <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.name}">...</a></td>
+                <td><a th:href="@{/contacts/{contactId}(contactId=${contact.id})}" th:utext="${contact.name}">...</a>
+                </td>
                 <td th:utext="${contact.phone}">...</td>
                 <td th:utext="${contact.email}">...</td>
                 <td><a th:href="@{/contacts/{contactId}/edit(contactId=${contact.id})}">Edit</a></td>
@@ -65,7 +70,8 @@
     <div class="align-items-center">
         <nobr>
             <span class="text-dark" th:if="${hasPrev}"><a th:href="@{/contacts?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
-            <span class="text-dark" th:if="${hasNext}"><a th:href="@{/contacts?page={next}(next=${next})}">Next</a></span>
+            <span class="text-dark" th:if="${hasNext}"><a
+                    th:href="@{/contacts?page={next}(next=${next})}">Next</a></span>
         </nobr>
     </div>
 </div>

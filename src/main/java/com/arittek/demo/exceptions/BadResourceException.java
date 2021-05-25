@@ -1,4 +1,5 @@
 package com.arittek.demo.exceptions;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -19,56 +19,71 @@ import java.util.List;
 @Controller
 public class AppController {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private UserRepository userRepo;
+    @Autowired
+    private UserRepository userRepo;
 
-//	@GetMapping("")
-//	public String viewHomePage() {
-//		return "index";
-//	}
-	@GetMapping({"","/login"})
-	public String viewLoginPage() {
-		// custom logic before showing login page...
+    @GetMapping({"", "/login"})
+    public String viewLoginPage() {
+        // custom logic before showing login page...
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        }else{
+            return "redirect:/contacts";
+        }
+
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
-			return "login";
-		}
-		return "redirect:/contacts";
-	}
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
-		model.addAttribute("user", new User());
-		model.addAttribute("success",true);
-		return "signup_form";
-	}
+        model.addAttribute("user", new User());
+        model.addAttribute("success", true);
+        if(authentication==null || authentication instanceof AnonymousAuthenticationToken){
+            model.addAttribute("authorized",false);
+        }else{
+            model.addAttribute("authorized",true);
+        }
+        return "signup_form";
+    }
 
-	@PostMapping("/process_register")
-	public String processRegister(User user,Model model) {
+    @PostMapping("/process_register")
+    public String processRegister(User user, Model model) {
 
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encodedPassword);
-		try{
-			userRepo.save(user);
-			logger.info(" Gomeby jo data "+userRepo.save(user));
-			model.addAttribute("user",user);
-			return "register_success";
-		}catch (Exception ex){
-			model.addAttribute("user-already-exists",user);
-			model.addAttribute("isExistsUser",true);
-			return "redirect:/register";
-			//return  "signup_form";
-		}
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        logger.info("before exception"+user);
+        User userFromDb=null;
 
-	}
+        userFromDb = userRepo.findByEmail(user.getEmail());
+        String response = null;
+        if(userFromDb != null){
+            logger.info(" User Email changing "+userFromDb.getEmail());
+            model.addAttribute("user-already-exists", user);
+            model.addAttribute("isExistsUser", true);
+            model.addAttribute("emailAlreadyExists","This Email is already registered ! "+userFromDb.getEmail());
+            response=  "signup_form";
 
-	@GetMapping("/users")
-	public String listUsers(Model model) {
-		List<User> listUsers = userRepo.findAll();
-		model.addAttribute("listUsers", listUsers);
+        }else{
 
-		return "users";
-	}
+            userRepo.save(user);
+            model.addAttribute("User","ye kesi muhabbat hey ");
+            response= "register_success";
+        }
+        return response;
+    }
+
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
+    }
 }

@@ -27,10 +27,9 @@ public class ContactService {
 
     public Contact findById(Long id) throws ResourceNotFoundException {
         Contact contact = contactRepository.findById(id).orElse(null);
-        if (contact==null) {
+        if (contact == null) {
             throw new ResourceNotFoundException("Cannot find Contact with id: " + id);
-        }
-        else return contact;
+        } else return contact;
     }
 
     public List<Contact> findAll(int pageNumber, int rowPerPage) {
@@ -48,8 +47,7 @@ public class ContactService {
                         " already exists");
             }
             return contactRepository.save(contact);
-        }
-        else {
+        } else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
             exc.addErrorMessage("Contact is null or empty");
             throw exc;
@@ -63,8 +61,7 @@ public class ContactService {
                 throw new ResourceNotFoundException("Cannot find Contact with id: " + contact.getId());
             }
             contactRepository.save(contact);
-        }
-        else {
+        } else {
             BadResourceException exc = new BadResourceException("Failed to save contact");
             exc.addErrorMessage("Contact is null or empty");
             throw exc;
@@ -74,8 +71,7 @@ public class ContactService {
     public void deleteById(Long id) throws ResourceNotFoundException {
         if (!existsById(id)) {
             throw new ResourceNotFoundException("Cannot find contact with id: " + id);
-        }
-        else {
+        } else {
             contactRepository.deleteById(id);
         }
     }

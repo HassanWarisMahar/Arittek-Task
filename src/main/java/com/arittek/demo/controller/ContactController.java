@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -21,23 +22,14 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-   // @Value("${msg.title}")
-    private String title;
-
-//    @GetMapping(value = {"/", "/index"})
-//    public String index(Model model) {
-//        model.addAttribute("title", title);
-//        return "index";
-//    }
-
     @GetMapping(value = "/contacts")
     public String getContacts(Model model,
                               @RequestParam(value = "page", defaultValue = "1") int pageNumber) {
 
-        List<Contact> contacts = contactService.findAll(pageNumber,ROW_PER_PAGE);
+        List<Contact> contacts = contactService.findAll(pageNumber, ROW_PER_PAGE);
         long count = contactService.count();
-        boolean hasPrev = pageNumber>1;
-        boolean hasNext = (pageNumber*ROW_PER_PAGE)<count;
+        boolean hasPrev = pageNumber > 1;
+        boolean hasNext = (pageNumber * ROW_PER_PAGE) < count;
         model.addAttribute("contacts", contacts);
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("prev", pageNumber - 1);
@@ -50,13 +42,13 @@ public class ContactController {
     @GetMapping(value = "/contacts/{contactId}")
     public String getContactById(Model model, @PathVariable long contactId) {
         Contact contact = null;
-        try{
+        try {
 
             contact = contactService.findById(contactId);
-            model.addAttribute("contact",contact);
+            model.addAttribute("contact", contact);
 
-        }catch (ResourceNotFoundException ex){
-            model.addAttribute("errorMessage","Contact not found");
+        } catch (ResourceNotFoundException ex) {
+            model.addAttribute("errorMessage", "Contact not found");
         }
         return "contact";
     }
@@ -64,8 +56,8 @@ public class ContactController {
     @GetMapping(value = {"/contacts/add"})
     public String showAddContact(Model model) {
         Contact contact = new Contact();
-        model.addAttribute("add",true);
-        model.addAttribute("contact",contact);
+        model.addAttribute("add", true);
+        model.addAttribute("contact", contact);
 
         return "contact-edit";
     }
@@ -73,17 +65,17 @@ public class ContactController {
     @PostMapping(value = "/contacts/add")
     public String addContact(Model model,
                              @ModelAttribute("contact") Contact contact) {
-        try{
+        try {
             Contact newContact = contactService.save(contact);
-            return  "redirect:/contacts/"+String .valueOf(newContact.getId());
+            return "redirect:/contacts/" + String.valueOf(newContact.getId());
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             //log exception first ,then show error
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
 
             //model.addAttribute("contact", contact)
-            model.addAttribute("add",true);
+            model.addAttribute("add", true);
 
         }
 
@@ -131,9 +123,9 @@ public class ContactController {
             contact = contactService.findById(contactId);
 
             model.addAttribute("allowDelete", true);
-            model.addAttribute("contact",contact);
-        }catch (ResourceNotFoundException ex){
-            model.addAttribute("errorMessage","Contact not found ");
+            model.addAttribute("contact", contact);
+        } catch (ResourceNotFoundException ex) {
+            model.addAttribute("errorMessage", "Contact not found ");
         }
         return "contact";
     }
@@ -144,10 +136,10 @@ public class ContactController {
         try {
             contactService.deleteById(contactId);
             return "redirect:/contacts";
-        }catch (ResourceNotFoundException ex){
+        } catch (ResourceNotFoundException ex) {
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
-            model.addAttribute("errorMessage",errorMessage);
+            model.addAttribute("errorMessage", errorMessage);
             return "contact";
         }
     }
