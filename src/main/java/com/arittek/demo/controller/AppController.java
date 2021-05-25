@@ -58,7 +58,6 @@ public class AppController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        logger.info("before exception"+user);
         User userFromDb=null;
 
         userFromDb = userRepo.findByEmail(user.getEmail());
@@ -73,7 +72,7 @@ public class AppController {
         }else{
 
             userRepo.save(user);
-            model.addAttribute("User","ye kesi muhabbat hey ");
+          //  model.addAttribute("User","");
             response= "register_success";
         }
         return response;
