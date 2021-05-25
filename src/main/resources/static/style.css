@@ -2,7 +2,12 @@ body {
 
     font-family: 'Roboto', sans-serif;
 }
-
+.center {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .form-control {
     height: 40px;
     box-shadow: none;

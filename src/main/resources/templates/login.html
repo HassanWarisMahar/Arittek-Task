@@ -10,40 +10,41 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid text-center">
-    <br>
-    <br>
-    <br>
-    <h2>Login</h2>
-    <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+<div class="container text-center h-100  center">
 
-        <div th:if="${param.error}">
-            <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
-        </div>
+    <div class="row h-100 justify-content-center  signup-form align-items-center " >
 
-        <div th:if="${param.logout}">
-            <p class="text-warning">You have been logged out.</p>
-        </div>
+        <form th:action="@{/login}" method="post" style="max-width: 600px; margin: 8rem;">
+            <h2>Login</h2>
 
-        <div class="border border-secondary p-3 rounded">
+            <div th:if="${param.error}">
+                <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+            </div>
 
-            <p>
-                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
-            </p>
-            <p>
-                <input type="password" name="password" class="form-control" placeholder="Password" required/>
-            </p>
+            <div th:if="${param.logout}">
+                <p class="text-warning">You have been logged out.</p>
+            </div>
 
-            <p>
-                <input type="submit" value="Login" class="btn btn-primary"/>
-            </p>
-        </div>
-    </form>
-    <div>
+            <div>
 
-        <h5> If you are not registered <a th:href="@{/register}">Register Here</a></h5>
+                <p>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
+                </p>
+                <p>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required/>
+                </p>
+
+                <p>
+                    <input type="submit" value="Login" class="btn btn-primary"/>
+                </p>
+            </div>
+            <div>
+
+                <p> If you are not registered <a th:href="@{/register}">Register Here</a></p>
+
+            </div>
+        </form>
 
     </div>
-</div>
 </body>
 </html>

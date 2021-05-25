@@ -33,13 +33,19 @@
     </div>
 </nav>
 
-<div class="container justify-content-center h-100  align-content-center">
-    <h1 th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'"/>
+<div class="container signup-form ">
+    <h1  th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'"/>
     <a th:href="@{/contacts}">Back to Contact List</a>
     <br/><br/>
     <form th:action="${add} ? @{/contacts/add} : @{/contacts/{contactId}/edit(contactId=${contact.id})}"
           th:object="${contact}" method="POST">
+        <div class="form-group">
+            <div>
+                <p th:if="${'ID : '+contact.id}">
+            </div>
+        </div>
         <table border="0">
+
             <tr th:if="${contact.id}">
                 <td>ID</td>
                 <td>:</td>
