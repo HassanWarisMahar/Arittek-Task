@@ -1,5 +1,6 @@
 package com.arittek.demo.controller;
 
+import com.arittek.demo.model.Teacher;
 import com.arittek.demo.services.SubjectService;
 import com.arittek.demo.exceptions.BadResourceException;
 import com.arittek.demo.exceptions.ResourceAlreadyExistsException;
@@ -91,7 +92,7 @@ public class SubjectController {
             model.addAttribute("errorMessage", "Subject not found");
         }
         model.addAttribute("add", false);
-        model.addAttribute("subject",subject);
+        model.addAttribute("subject", subject);
         return "subject/subject-edit";
     }
 

@@ -38,7 +38,7 @@
             <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}" th:utext="${subject.name}">...</a>
             </td>
             <td th:utext="${subject.duration}">...</td>
-            <td th:utext="${subject.teacher}">...</td>
+            <td th:utext="${subject.teacher.name}">...</td>
             <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a></td>
         </tr>
     </table>
