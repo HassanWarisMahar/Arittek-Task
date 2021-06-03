@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="${add} ? 'Create a Student' : 'Edit a Student'"/>
+    <title th:text="${add} ? 'Create a teacher' : 'Edit a teacher'"/>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,24 +12,24 @@
 <body>
 
 <div class="container signup-form ">
-    <h1 th:text="${add} ? 'Create a Student:' : 'Edit a Student:'"/>
-    <a th:href="@{/student/view}">Back to Student List</a>
+    <h1 th:text="${add} ? 'Create a teacher:' : 'Edit a teacher:'"/>
+    <a th:href="@{/teacher/view}">Back to teacher List</a>
     <br/><br/>
-    <form th:object="${student}"
-          th:action="${add} ? @{/student/create} : @{/student/{studentId}/edit(studentId=${student.id})}"
+    <form th:object="${teacher}"
+          th:action="${add} ? @{/teacher/create} : @{/teacher/{teacherId}/edit(teacherId=${teacher.id})}"
           method="POST">
 
         <div class="form-group">
             <div>
-                <p th:if="${'ID : '+student.id}">
+                <p th:if="${'ID : '+teacher.id}">
             </div>
         </div>
         <table border="0">
 
-            <tr th:if="${student.id}">
+            <tr th:if="${teacher.id}">
                 <td>ID</td>
                 <td>:</td>
-                <td th:utext="${student.id}">...</td>
+                <td th:utext="${teacher.id}">...</td>
             </tr>
             <tr>
                 <td>Name</td>

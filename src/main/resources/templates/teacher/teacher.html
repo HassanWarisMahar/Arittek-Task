@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
-  <title>View student</title>
+  <title>View teacher</title>
   <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,50 +11,36 @@
 </head>
 <body>
 
-  <h1>View Student</h1>
-  <a th:href="@{/student/view}">Back to Student List</a>
+  <h1>View teacher</h1>
+  <a th:href="@{/teacher/view}">Back to teacher List</a>
   <br/><br/>
-  <div th:if="${student}">
+  <div th:if="${teacher}">
     <table border="0">
       <tr>
         <td>ID</td>
         <td>:</td>
-        <td th:utext="${student.id}">...</td>
+        <td th:utext="${teacher.id}">...</td>
       </tr>
       <tr>
         <td>Name</td>
         <td>:</td>
-        <td th:utext="${student.name}">...</td>
+        <td th:utext="${teacher.name}">...</td>
       </tr>
       <tr>
         <td>Phone</td>
         <td>:</td>
-        <td th:utext="${student.phone}">...</td>
+        <td th:utext="${teacher.phone}">...</td>
       </tr>
-      <tr>
-        <td>Age </td>
-        <td>:</td>
-        <td th:utext="${student.age}">...</td>
-      </tr>
-      <tr>
-        <td>Roll Number </td>
-        <td>:</td>
-        <td th:utext="${student.rollNo}">...</td>
-      </tr>
-      <tr>
-        <td>Grade </td>
-        <td>:</td>
-        <td th:utext="${student.grade}">...</td>
-      </tr>
+
 
     </table>
     <br/><br/>
     <div th:if="not ${allowDelete}">
-      <a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a> |
-      <a th:href="@{/student/{studentId}/delete(studentId=${student.id})}">Delete</a>
+      <a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a> |
+      <a th:href="@{/teacher/{teacherId}/delete(teacherId=${teacher.id})}">Delete</a>
     </div>
-    <form th:if="${allowDelete}" th:action="@{/student/{studentId}/delete(studentId=${student.id})}" method="POST">
-      Delete this student? <input type="submit" th:value="Yes"/>
+    <form th:if="${allowDelete}" th:action="@{/teacher/{teacherId}/delete(teacherId=${teacher.id})}" method="POST">
+      Delete this teacher? <input type="submit" th:value="Yes"/>
     </form>
   </div>
 </div>

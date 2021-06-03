@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Student List</title>
+    <title>teacher List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,11 +12,11 @@
 <body>
 
 
-<h1>STUDENT LIST</h1>
+<h1>teacher LIST</h1>
 
 <div>
     <nobr>
-        <a class="btn-link btn-info" th:href="@{/students/create}">
+        <a class="btn-link btn-info" th:href="@{/teachers/create}">
             <h2>Add</h2>
         </a>
     </nobr>
@@ -26,7 +26,7 @@
 <div>
     <table class="table table-striped table-bordered table-dark text-center">
         <tr>
-            <th class="text-center">Student Id</th>
+            <th class="text-center">teacher Id</th>
             <th class="text-center">Name</th>
             <th class="text-center">AGE</th>
             <th class="text-center">Roll No</th>
@@ -34,22 +34,22 @@
             <th class="text-center">Subjects</th>
             <th class="text-center">Edit</th>
         </tr>
-        <tr th:each="student : ${students}">
-            <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}" th:utext="${student.id}">...</a></td>
-            <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}" th:utext="${student.name}">...</a>
+        <tr th:each="teacher : ${teachers}">
+            <td><a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}" th:utext="${teacher.id}">...</a></td>
+            <td><a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}" th:utext="${teacher.name}">...</a>
             </td>
-            <td th:utext="${student.age}">...</td>
-            <td th:utext="${student.rollNo}">...</td>
-            <td th:utext="${student.grade}">...</td>
+            <td th:utext="${teacher.age}">...</td>
+            <td th:utext="${teacher.rollNo}">...</td>
+            <td th:utext="${teacher.grade}">...</td>
            
             <td>
                 <div>
 
-                    <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>
+                    <a th:each="subject : ${teacher.subjects}" th:utext="${subject.name}"> </a>
 
                 </div>
             </td>
-            <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a></td>
+            <td><a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a></td>
         </tr>
     </table>
 </div>
