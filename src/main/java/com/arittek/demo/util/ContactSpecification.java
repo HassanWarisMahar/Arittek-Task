@@ -1,6 +1,6 @@
 package com.arittek.demo.util;
 
-import com.arittek.demo.models.Contact;
+import com.arittek.demo.model.Contact;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;

@@ -1,6 +1,6 @@
 package com.arittek.demo.controller;
 
-import com.arittek.demo.models.User;
+import com.arittek.demo.model.User;
 import com.arittek.demo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

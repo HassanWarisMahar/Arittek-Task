@@ -1,7 +1,7 @@
 package com.arittek.demo.services;
 
-import com.arittek.demo.models.CustomUserDetails;
-import com.arittek.demo.models.User;
+import com.arittek.demo.model.CustomUserDetails;
+import com.arittek.demo.model.User;
 import com.arittek.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

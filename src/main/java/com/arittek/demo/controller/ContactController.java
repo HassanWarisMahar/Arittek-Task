@@ -1,7 +1,7 @@
 package com.arittek.demo.controller;
 
 import com.arittek.demo.exceptions.ResourceNotFoundException;
-import com.arittek.demo.models.Contact;
+import com.arittek.demo.model.Contact;
 import com.arittek.demo.services.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class ContactController {
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("next", pageNumber + 1);
 
-        return "contact-list";
+        return "contact/contact-list";
     }
 
     @GetMapping(value = "/contacts/{contactId}")
@@ -50,7 +50,7 @@ public class ContactController {
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Contact not found");
         }
-        return "contact";
+        return "contact/contact";
     }
 
     @GetMapping(value = {"/contacts/add"})
@@ -59,7 +59,7 @@ public class ContactController {
         model.addAttribute("add", true);
         model.addAttribute("contact", contact);
 
-        return "contact-edit";
+        return "contact/contact-edit";
     }
 
     @PostMapping(value = "/contacts/add")
@@ -79,7 +79,7 @@ public class ContactController {
 
         }
 
-        return "contact-edit";
+        return "contact/contact-edit";
     }
 
     @GetMapping(value = {"/contacts/{contactId}/edit"})
@@ -92,7 +92,7 @@ public class ContactController {
         }
         model.addAttribute("add", false);
         model.addAttribute("contact", contact);
-        return "contact-edit";
+        return "contact/contact-edit";
     }
 
     @PostMapping(value = {"/contacts/{contactId}/edit"})
@@ -111,7 +111,7 @@ public class ContactController {
             model.addAttribute("errorMessage", errorMessage);
 
             model.addAttribute("add", false);
-            return "contact-edit";
+            return "contact/contact-edit";
         }
     }
 
@@ -127,7 +127,7 @@ public class ContactController {
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Contact not found ");
         }
-        return "contact";
+        return "contact/contact";
     }
 
     @PostMapping(value = {"/contacts/{contactId}/delete"})
@@ -140,7 +140,7 @@ public class ContactController {
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
-            return "contact";
+            return "contact/contact";
         }
     }
 }

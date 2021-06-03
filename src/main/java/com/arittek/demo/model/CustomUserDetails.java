@@ -1,4 +1,4 @@
-package com.arittek.demo.models;
+package com.arittek.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

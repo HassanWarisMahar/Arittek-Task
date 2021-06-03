@@ -21,8 +21,8 @@
             <li><a th:href="@{/users}"> Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
-                [[${#request.userPrincipal.principal.fullName}]]</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>[[${#request.userPrincipal.principal.fullName}]]</a>
+            </li>
             <li><a th:href="@{/logout}"><span>
 				<form th:action="@{/logout}" method="post">
 
@@ -32,6 +32,7 @@
         </ul>
     </div>
 </nav>
+
 <div class="container text-center">
 
     <h1>CONTACT LIST</h1>
@@ -39,9 +40,7 @@
     <div>
         <nobr>
             <a class="btn-link btn-info" th:href="@{/contacts/add}">
-                <h2>Add
-                    <Contact></Contact>
-                </h2>
+                <h2>Add</h2>
             </a>
         </nobr>
     </div>

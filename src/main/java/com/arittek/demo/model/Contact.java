@@ -1,4 +1,4 @@
-package com.arittek.demo.models;
+package com.arittek.demo.model;
 
 
 import lombok.Getter;

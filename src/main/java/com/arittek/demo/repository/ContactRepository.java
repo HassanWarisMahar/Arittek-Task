@@ -1,7 +1,7 @@
 package com.arittek.demo.repository;
 
 
-import com.arittek.demo.models.Contact;
+import com.arittek.demo.model.Contact;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

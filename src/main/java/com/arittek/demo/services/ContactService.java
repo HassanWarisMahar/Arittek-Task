@@ -3,7 +3,7 @@ package com.arittek.demo.services;
 import com.arittek.demo.exceptions.BadResourceException;
 import com.arittek.demo.exceptions.ResourceAlreadyExistsException;
 import com.arittek.demo.exceptions.ResourceNotFoundException;
-import com.arittek.demo.models.Contact;
+import com.arittek.demo.model.Contact;
 import com.arittek.demo.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
