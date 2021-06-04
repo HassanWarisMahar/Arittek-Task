@@ -41,6 +41,7 @@ public class SubjectService {
 
         return subjectRepository.findAll();
     }
+
     public Subject findById(Long id) throws ResourceNotFoundException {
         Subject subject = subjectRepository.findById(id).orElse(null);
         if (subject == null) {
@@ -128,7 +129,7 @@ public class SubjectService {
     public String assignTeacherSubject(Long subjectId, Long teacherId) {
         Subject subject = null;
         Teacher teacher = null;
-        if (existsSubjectById(subjectId) && existsSubjectById(teacherId) ) {
+        if (existsSubjectById(subjectId) && existsSubjectById(teacherId)) {
             try {
                 subject = subjectRepository.findById(subjectId).get();
                 teacher = teacherRepository.findById(teacherId).get();
@@ -143,14 +144,14 @@ public class SubjectService {
 
         } else {
             String message = "";
-            if(!existsSubjectById(subjectId)){
+            if (!existsSubjectById(subjectId)) {
 
-              message = "Specified Subject does not available with ID #" + subjectId+"\n";
+                message = "Specified Subject does not available with ID #" + subjectId + "\n";
             }
-            if(!existsTeacherById(teacherId)){
+            if (!existsTeacherById(teacherId)) {
                 message += "Specified Teacher does not available with ID #" + teacherId;
             }
-            return  message;
+            return message;
         }
     }
 }

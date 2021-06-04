@@ -24,15 +24,18 @@ public class DevelopersController {
 
     @RequestMapping("/developer/{id}")
     public String developer(@PathVariable Long id, Model model) {
+
         model.addAttribute("developer", repository.findById(id));
         model.addAttribute("skills", skillRepository.findAll());
-        return "developer";
+        return "developer/developer";
+
     }
 
     @RequestMapping(value = "/developers", method = RequestMethod.GET)
     public String developersList(Model model) {
+
         model.addAttribute("developers", repository.findAll());
-        return "developers";
+        return "developer/developers";
     }
 
     @RequestMapping(value = "/developers", method = RequestMethod.POST)
@@ -56,6 +59,7 @@ public class DevelopersController {
         Developer developer = repository.findById(id).orElse(null);
 
         if (developer != null) {
+
             if (!developer.hasSkill(skill)) {
                 developer.getSkills().add(skill);
             }
