@@ -63,11 +63,12 @@
                 <td><input type="text" th:field="*{grade}" size="50"/></td>
             </tr>
             <tr>
+                <td>Subject</td>
+                <td>:</td>
                 <td>
                     <div>
-
                         <select class="selectpicker" multiple data-live-search="true">
-                            <option th:each="subject :${subjectList}" th:utext="${subject.name}"></option>
+                            <option th:each="subject :${subjectList}" th:value="${subject.id}" th:field="*{subjects}" th:utext="${subject.name}"></option>
                         </select>
                     </div>
                 </td>
