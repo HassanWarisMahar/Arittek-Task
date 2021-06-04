@@ -1,12 +1,10 @@
 package com.arittek.demo.controller;
 
-import com.arittek.demo.model.Teacher;
 import com.arittek.demo.services.SubjectService;
 import com.arittek.demo.exceptions.BadResourceException;
 import com.arittek.demo.exceptions.ResourceAlreadyExistsException;
 import com.arittek.demo.exceptions.ResourceNotFoundException;
 import com.arittek.demo.model.Subject;
-import com.arittek.demo.services.SubjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -180,7 +178,6 @@ public class SubjectController {
     ) {
         return subjectService.assignStudentSubject(subjectId, studentId);
     }
-
 
     @PutMapping(value = "/{subjectId}/teacher/{teacherId}")
     String assignTeacherToSubject(
