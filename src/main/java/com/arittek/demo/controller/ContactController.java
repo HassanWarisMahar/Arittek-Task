@@ -55,6 +55,7 @@ public class ContactController {
 
     @GetMapping(value = {"/contacts/add"})
     public String showAddContact(Model model) {
+
         Contact contact = new Contact();
         model.addAttribute("add", true);
         model.addAttribute("contact", contact);
@@ -73,17 +74,16 @@ public class ContactController {
             //log exception first ,then show error
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
-
             //model.addAttribute("contact", contact)
             model.addAttribute("add", true);
 
         }
-
         return "contact/contact-edit";
     }
 
     @GetMapping(value = {"/contacts/{contactId}/edit"})
     public String showEditContact(Model model, @PathVariable long contactId) {
+
         Contact contact = null;
         try {
             contact = contactService.findById(contactId);
@@ -100,9 +100,11 @@ public class ContactController {
                                 @PathVariable long contactId,
                                 @ModelAttribute("contact") Contact contact) {
         try {
+
             contact.setId(contactId);
             contactService.update(contact);
             return "redirect:/contacts/" + String.valueOf(contact.getId());
+
         } catch (Exception ex) {
             // log exception first,
             // then show error

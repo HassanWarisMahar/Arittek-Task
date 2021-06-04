@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${add} ? 'Create a Student' : 'Edit a Student'"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container signup-form ">
+    <h1 th:text="${add} ? 'Create a Student:' : 'Edit a Student:'"/>
+    <a th:href="@{/student/view}">Back to Student List</a>
+    <br/><br/>
+    <form th:object="${student}"
+          th:action="${add} ? @{/student/create} : @{/student/{studentId}/edit(studentId=${student.id})}"
+          method="POST">
+
+        <div class="form-group">
+            <div>
+                <p th:if="${'ID : '+student.id}">
+            </div>
+        </div>
+        <table border="0">
+
+            <tr th:if="${student.id}">
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${student.id}">...</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{name}" required="required"/></td>
+            </tr>
+            <tr>
+                <td>Roll Number</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{rollNo}"/></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{phone}" required="required"/></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{age}" required="required"/></td>
+            </tr>
+            <tr>
+                <td>Grade</td>
+                <td>:</td>
+                <td><input type="text" th:field="*{grade}" size="50"/></td>
+            </tr>
+
+        </table>
+        <input type="submit" th:value="${add} ? 'Create' : 'Update'"/>
+    </form>
+
+</div>
+<br/>
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+</body>
+</html>

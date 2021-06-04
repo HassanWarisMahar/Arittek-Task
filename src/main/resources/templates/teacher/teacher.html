@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>View student</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h1>View Student</h1>
+  <a th:href="@{/student/view}">Back to Student List</a>
+  <br/><br/>
+  <div th:if="${student}">
+    <table border="0">
+      <tr>
+        <td>ID</td>
+        <td>:</td>
+        <td th:utext="${student.id}">...</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>:</td>
+        <td th:utext="${student.name}">...</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>:</td>
+        <td th:utext="${student.phone}">...</td>
+      </tr>
+      <tr>
+        <td>Age </td>
+        <td>:</td>
+        <td th:utext="${student.age}">...</td>
+      </tr>
+      <tr>
+        <td>Roll Number </td>
+        <td>:</td>
+        <td th:utext="${student.rollNo}">...</td>
+      </tr>
+      <tr>
+        <td>Grade </td>
+        <td>:</td>
+        <td th:utext="${student.grade}">...</td>
+      </tr>
+
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+      <a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a> |
+      <a th:href="@{/student/{studentId}/delete(studentId=${student.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/student/{studentId}/delete(studentId=${student.id})}" method="POST">
+      Delete this student? <input type="submit" th:value="Yes"/>
+    </form>
+  </div>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+</body>
+</html>

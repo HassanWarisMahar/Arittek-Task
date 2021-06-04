@@ -41,6 +41,12 @@ public class SubjectService {
 
         return subjectRepository.findAll();
     }
+    public Subject findById(Long id) throws ResourceNotFoundException {
+        Subject subject = subjectRepository.findById(id).orElse(null);
+        if (subject == null) {
+            throw new ResourceNotFoundException("Cannot find student with id: " + id);
+        } else return subject;
+    }
 
     public Subject save(Subject subject) throws BadResourceException, ResourceAlreadyExistsException {
         if (!StringUtils.isEmpty(subject.getName())) {
@@ -94,6 +100,7 @@ public class SubjectService {
 
         if (existsStudentById(studentId) && existsSubjectById(subjectId)) {
             try {
+
                 subject = subjectRepository.findById(subjectId).get();
                 student = studentRepository.findById(studentId).get();
                 subject.enrolledStudents.add(student);

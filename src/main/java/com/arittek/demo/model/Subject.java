@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,8 @@ public class Subject {
     Long id;
 
     private String name;
+    private Time duration;
+
 
     @JsonIgnore
     @ManyToMany

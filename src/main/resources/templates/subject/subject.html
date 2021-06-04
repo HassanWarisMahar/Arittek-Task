@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>View Subejct</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h1>View Subejct</h1>
+  <a th:href="@{/subejct/view}">Back to Subejct List</a>
+  <br/><br/>
+  <div th:if="${subejct}">
+    <table border="0">
+      <tr>
+        <td>ID</td>
+        <td>:</td>
+        <td th:utext="${subejct.id}">...</td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>:</td>
+        <td th:utext="${subejct.name}">...</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>:</td>
+        <td th:utext="${subejct.phone}">...</td>
+      </tr>
+      <tr>
+        <td>Age </td>
+        <td>:</td>
+        <td th:utext="${subejct.age}">...</td>
+      </tr>
+      <tr>
+        <td>Roll Number </td>
+        <td>:</td>
+        <td th:utext="${subejct.rollNo}">...</td>
+      </tr>
+      <tr>
+        <td>Grade </td>
+        <td>:</td>
+        <td th:utext="${subejct.grade}">...</td>
+      </tr>
+
+    </table>
+    <br/><br/>
+    <div th:if="not ${allowDelete}">
+      <a th:href="@{/subejct/{subejctId}/edit(subejctId=${subejct.id})}">Edit</a> |
+      <a th:href="@{/subejct/{subejctId}/delete(subejctId=${subejct.id})}">Delete</a>
+    </div>
+    <form th:if="${allowDelete}" th:action="@{/subejct/{subejctId}/delete(subejctId=${subejct.id})}" method="POST">
+      Delete this subejct? <input type="submit" th:value="Yes"/>
+    </form>
+  </div>
+</div>
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+</body>
+</html>
