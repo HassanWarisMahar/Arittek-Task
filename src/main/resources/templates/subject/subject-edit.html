@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title th:text="${add} ? 'Create a Subejct' : 'Edit a Subejct'"/>
+    <title th:text="${add} ? 'Create a Subject' : 'Edit a Subject'"/>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -12,49 +12,39 @@
 <body>
 
 <div class="container signup-form ">
-    <h1 th:text="${add} ? 'Create a Subejct:' : 'Edit a Subejct:'"/>
-    <a th:href="@{/subejct/view}">Back to subejct List</a>
+    <h1 th:text="${add} ? 'Create a Subject:' : 'Edit a Subject:'"/>
+    <a th:href="@{/subject/view}">Back to subject List</a>
     <br/><br/>
-    <form th:object="${subejct}"
-          th:action="${add} ? @{/subejct/create} : @{/subejct/{subejctId}/edit(subejctId=${subejct.id})}"
+    <form th:object="${subject}"
+          th:action="${add} ? @{/subject/create} : @{/subject/{subjectId}/edit(subjectId=${subject.id})}"
           method="POST">
 
         <div class="form-group">
             <div>
-                <p th:if="${'ID : '+subejct.id}">
+                <p th:if="${'ID : '+subject.id}">
             </div>
         </div>
         <table border="0">
 
-            <tr th:if="${subejct.id}">
+            <tr th:if="${subject.id}">
                 <td>ID</td>
                 <td>:</td>
-                <td th:utext="${subejct.id}">...</td>
+                <td th:utext="${subject.id}">...</td>
             </tr>
             <tr>
-                <td>Name</td>
+                <td>Subject</td>
                 <td>:</td>
                 <td><input type="text" th:field="*{name}" required="required"/></td>
             </tr>
             <tr>
-                <td>Roll Number</td>
+                <td>Duration</td>
                 <td>:</td>
-                <td><input type="text" th:field="*{rollNo}"/></td>
+                <td><input type="text" th:field="*{duration}"/></td>
             </tr>
             <tr>
-                <td>Phone</td>
+                <td>Teacher</td>
                 <td>:</td>
-                <td><input type="text" th:field="*{phone}" required="required"/></td>
-            </tr>
-            <tr>
-                <td>Age</td>
-                <td>:</td>
-                <td><input type="text" th:field="*{age}" required="required"/></td>
-            </tr>
-            <tr>
-                <td>Grade</td>
-                <td>:</td>
-                <td><input type="text" th:field="*{grade}" size="50"/></td>
+                <td><input type="text" th:field="*{teacher}" required="required"/></td>
             </tr>
 
         </table>
