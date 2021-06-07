@@ -1,48 +1,79 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
-  <title>View teacher</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <title>View teacher</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-  <h1>View teacher</h1>
-  <a th:href="@{/teacher/view}">Back to teacher List</a>
-  <br/><br/>
-  <div th:if="${teacher}">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">More Options
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/teacher/view}">Teachers</a></li>
+                    <li><a th:href="@{/subject/view}">Subjects</a></li>
+                    <li><a th:href="@{/student/view}">Students</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h1>View teacher</h1>
+<a th:href="@{/teacher/view}">Back to teacher List</a>
+<br/><br/>
+<div th:if="${teacher}">
     <table border="0">
-      <tr>
-        <td>ID</td>
-        <td>:</td>
-        <td th:utext="${teacher.id}">...</td>
-      </tr>
-      <tr>
-        <td>Name</td>
-        <td>:</td>
-        <td th:utext="${teacher.name}">...</td>
-      </tr>
-      <tr>
-        <td>Phone</td>
-        <td>:</td>
-        <td th:utext="${teacher.phone}">...</td>
-      </tr>
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${teacher.id}">...</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td th:utext="${teacher.name}">...</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+            <td th:utext="${teacher.phone}">...</td>
+        </tr>
 
 
     </table>
     <br/><br/>
     <div th:if="not ${allowDelete}">
-      <a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a> |
-      <a th:href="@{/teacher/{teacherId}/delete(teacherId=${teacher.id})}">Delete</a>
+        <a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a> |
+        <a th:href="@{/teacher/{teacherId}/delete(teacherId=${teacher.id})}">Delete</a>
     </div>
     <form th:if="${allowDelete}" th:action="@{/teacher/{teacherId}/delete(teacherId=${teacher.id})}" method="POST">
-      Delete this teacher? <input type="submit" th:value="Yes"/>
+        Delete this teacher? <input type="submit" th:value="Yes"/>
     </form>
-  </div>
+</div>
 </div>
 <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
 </body>

@@ -5,17 +5,41 @@
     <title th:text="${add} ? 'Create a Student' : 'Edit a Student'"/>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">More Options
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/teacher/view}">Teachers</a></li>
+                    <li><a th:href="@{/subject/view}">Subjects</a></li>
+                    <li><a th:href="@{/student/view}">Students</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container signup-form ">
     <h1 th:text="${add} ? 'Create a Student:' : 'Edit a Student:'"/>
@@ -62,24 +86,25 @@
                 <td>:</td>
                 <td><input type="text" th:field="*{grade}" size="50"/></td>
             </tr>
-            <tr>
-                <td>Subject</td>
-                <td>:</td>
-                <td>
-                    <div>
-                        <select class="selectpicker" multiple data-live-search="true">
-                            <option th:each="subject :${subjectList}" th:value="${subject.id}" th:field="*{subjects}" th:utext="${subject.name}"></option>
-                        </select>
-                    </div>
-                </td>
-                <!--                <td>-->
-                <!--                    <div>-->
+<!--            <tr>-->
+<!--                <td>Subject</td>-->
+<!--                <td>:</td>-->
+<!--                <td>-->
+<!--                    <div>-->
+<!--                        <select class="selectpicker" multiple data-live-search="true">-->
+<!--                            <option th:each="subject :${subjectList}" th:value="${subject.id}" th:field="*{subjects}"-->
+<!--                                    th:utext="${subject.name}"></option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div>-->
 
-                <!--                        <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>-->
+<!--                        <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>-->
 
-                <!--                    </div>-->
-                <!--                </td>-->
-            </tr>
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
         </table>
         <input type="submit" th:value="${add} ? 'Create' : 'Update'"/>
     </form>

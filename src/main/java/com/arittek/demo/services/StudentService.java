@@ -55,7 +55,7 @@ public class StudentService {
         if (!StringUtils.isEmpty(student.getName())) {
             if (!existsById(student.getId())) {
                 //throw new ResourceNotFoundException("Cannot find Student with id: " + student.getId());
-                return  "Cannot find Student with id: " + student.getId();
+                return "Cannot find Student with id: " + student.getId();
             }
             studentRepository.save(student);
         } else {

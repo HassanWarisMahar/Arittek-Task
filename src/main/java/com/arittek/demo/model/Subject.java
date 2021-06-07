@@ -23,7 +23,7 @@ public class Subject {
     Long id;
 
     private String name;
-    private Time duration;
+    private String  duration;
 
 
     @JsonIgnore

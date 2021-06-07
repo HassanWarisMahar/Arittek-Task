@@ -11,55 +11,112 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">More Options
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/teacher/view}">Teachers</a></li>
+                    <li><a th:href="@{/subject/view}">Subjects</a></li>
+                    <li><a th:href="@{/student/view}">Students</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
 <h1>View Student</h1>
 <a th:href="@{/student/view}">Back to Student List</a>
 <br/><br/>
 <div th:if="${student}">
-    <table border="0">
-        <tr>
-            <td>ID</td>
-            <td>:</td>
-            <td th:utext="${student.id}">...</td>
-        </tr>
-        <tr>
-            <td>Name</td>
-            <td>:</td>
-            <td th:utext="${student.name}">...</td>
-        </tr>
-        <tr>
-            <td>Phone</td>
-            <td>:</td>
-            <td th:utext="${student.phone}">...</td>
-        </tr>
-        <tr>
-            <td>Age</td>
-            <td>:</td>
-            <td th:utext="${student.age}">...</td>
-        </tr>
-        <tr>
-            <td>Roll Number</td>
-            <td>:</td>
-            <td th:utext="${student.rollNo}">...</td>
-        </tr>
-        <tr>
-            <td>Grade</td>
-            <td>:</td>
-            <td th:utext="${student.grade}">...</td>
-        </tr>
-        <tr>
-            <td>Subjects</td>
-            <td>:</td>
-            <td>
-                <div>
+    <form class="form-horizontal" th:action="@{/student/{id}/subjects(id=${student.id})}"
+          method="post" enctype="multipart/form-data">
+        <table border="0">
+            <tr>
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${student.id}">...</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td th:utext="${student.name}">...</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td th:utext="${student.phone}">...</td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>:</td>
+                <td th:utext="${student.age}">...</td>
+            </tr>
+            <tr>
+                <td>Roll Number</td>
+                <td>:</td>
+                <td th:utext="${student.rollNo}">...</td>
+            </tr>
+            <tr>
+                <td>Grade</td>
+                <td>:</td>
+                <td th:utext="${student.grade}">...</td>
+            </tr>
+            <tr>
+                <td>Subjects</td>
+                <td>:</td>
+                <td>
+                    <div>
 
-                    <P th:each="subject : ${student.subjects}" th:utext="${subject.name}"> |</P>
+                        <P th:each="subject : ${student.subjects}" th:utext="${subject.name}"> |</P>
 
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        <br/><br/>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Subjects</label>
+            <div class="col-lg-10">
+                <div th:each="sbj : ${student.subjects}">
+                    <span th:text="${sbj.name}"/> : - <span th:text="${sbj.duration}"/>
                 </div>
-            </td>
-        </tr>
-
-    </table>
-    <br/><br/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-2">
+                <div class="input-group">
+                    <select name="subjectId" class="form-control">
+                        <option th:each="subject : ${subjects}"
+                                th:value="${subject.id}"
+                                th:text="${subject.name}">Skill
+                        </option>
+                    </select>
+                    <span class="input-group-btn">
+									<button type="submit" class="btn btn-default">Add Subject</button>
+								</span>
+                </div>
+            </div>
+        </div>
+    </form>
     <div th:if="not ${allowDelete}">
         <a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a> |
         <a th:href="@{/student/{studentId}/delete(studentId=${student.id})}">Delete</a>
@@ -67,7 +124,50 @@
     <form th:if="${allowDelete}" th:action="@{/student/{studentId}/delete(studentId=${student.id})}" method="POST">
         Delete this student? <input type="submit" th:value="Yes"/>
     </form>
-</div>
+    <!--</div>-->
+    <!--<form class="form-horizontal" th:action="@{/developer/{id}/skills(id=${developer.orElse(null).id})}"-->
+    <!--      method="post" enctype="multipart/form-data">-->
+    <!--    <fieldset>-->
+    <!--        <div class="form-group">-->
+    <!--            <label class="col-lg-2 control-label">Name</label>-->
+    <!--            <div class="col-lg-6">-->
+    <!--                <input type="text" class="form-control" disabled="disabled"-->
+    <!--                       th:value="${developer.orElse(null).firstName + ' ' + developer.orElse(null).lastName}"/>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <label class="col-lg-2 control-label">Email</label>-->
+    <!--            <div class="col-lg-6">-->
+    <!--                <input type="text" class="form-control" disabled="disabled"-->
+    <!--                       th:value="${developer.orElse(null).email}"/>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <label class="col-lg-2 control-label">Skills</label>-->
+    <!--            <div class="col-lg-10">-->
+    <!--                <div th:each="skill : ${developer.orElse(null).skills}">-->
+    <!--                    <span th:text="${skill.label}"/> : - <span th:text="${skill.description}"/>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="form-group">-->
+    <!--            <div class="col-lg-6 col-lg-offset-2">-->
+    <!--                <div class="input-group">-->
+    <!--                    <select name="skillId" class="form-control">-->
+    <!--                        <option th:each="skill : ${skills}"-->
+    <!--                                th:value="${skill.id}"-->
+    <!--                                th:text="${skill.label}">Skill-->
+    <!--                        </option>-->
+    <!--                    </select>-->
+    <!--                    <span class="input-group-btn">-->
+    <!--									<button type="submit" class="btn btn-default">Add skill</button>-->
+    <!--								</span>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </fieldset>-->
+    <!--</form>-->
+
 </div>
 <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
 </body>

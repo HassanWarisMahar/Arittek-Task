@@ -28,31 +28,31 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Skill javascript = new Skill("javascript", "Javascript language skill");
-        Skill ruby = new Skill("ruby", "Ruby language skill");
-        Skill emberjs = new Skill("emberjs", "Emberjs framework");
-        Skill angularjs = new Skill("angularjs", "Angularjs framework");
-
-        skillRepository.save(javascript);
-        skillRepository.save(ruby);
-        skillRepository.save(emberjs);
-        skillRepository.save(angularjs);
-
-
-        List<Developer> developers = new LinkedList<Developer>();
-        developers.add(new Developer("Mueed", "Hameerani", "mueed.hameerani@gmail.com",
-                Arrays.asList(new Skill[]{javascript, ruby})));
-        developers.add(new Developer("Hassan", "Waris", "hassanwaris36@gmail.com",
-                Arrays.asList(new Skill[]{emberjs, ruby})));
-        developers.add(new Developer("Kirat", "Kumar", "kirat@gmail.com",
-                Arrays.asList(new Skill[]{angularjs, ruby})));
-        developers.add(new Developer("Sakina", "Gohar", "Sakina@gmail.com",
-                Arrays.asList(new Skill[]{emberjs, angularjs, javascript})));
-        developers.add(new Developer("Sindho", "Aminabadi", "sindhu@aminabadi.com",
-                Arrays.asList(new Skill[]{emberjs})));
+//        Skill javascript = new Skill("javascript", "Javascript language skill");
+//        Skill ruby = new Skill("ruby", "Ruby language skill");
+//        Skill emberjs = new Skill("emberjs", "Emberjs framework");
+//        Skill angularjs = new Skill("angularjs", "Angularjs framework");
+//
+//        skillRepository.save(javascript);
+//        skillRepository.save(ruby);
+//        skillRepository.save(emberjs);
+//        skillRepository.save(angularjs);
 
 
-        developerRepository.saveAll(developers);
+//        List<Developer> developers = new LinkedList<Developer>();
+//        developers.add(new Developer("Mueed", "Hameerani", "mueed.hameerani@gmail.com",
+//                Arrays.asList(new Skill[]{javascript, ruby})));
+//        developers.add(new Developer("Hassan", "Waris", "hassanwaris36@gmail.com",
+//                Arrays.asList(new Skill[]{emberjs, ruby})));
+//        developers.add(new Developer("Kirat", "Kumar", "kirat@gmail.com",
+//                Arrays.asList(new Skill[]{angularjs, ruby})));
+//        developers.add(new Developer("Sakina", "Gohar", "Sakina@gmail.com",
+//                Arrays.asList(new Skill[]{emberjs, angularjs, javascript})));
+//        developers.add(new Developer("Sindho", "Aminabadi", "sindhu@aminabadi.com",
+//                Arrays.asList(new Skill[]{emberjs})));
+//
+//
+//        developerRepository.saveAll(developers);
     }
 
 

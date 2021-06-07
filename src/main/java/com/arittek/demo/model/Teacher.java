@@ -21,7 +21,7 @@ public class Teacher {
     private Set<Subject> subjects;
 
     private String name;
-    private String specialization;
+    private String phone;
 
 
 

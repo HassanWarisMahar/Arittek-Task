@@ -12,38 +12,77 @@
 <body>
 
 
-<h1>Subject LIST</h1>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> WEB TASK</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/contacts}"> Contacts</a></li>
+            <li><a th:href="@{/users}"> Users</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">More Options
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/teacher/view}">Teachers</a></li>
+                    <li><a th:href="@{/subject/view}">Subjects</a></li>
+                    <li><a th:href="@{/student/view}">Students</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
 
-<div>
-    <nobr>
-        <a class="btn-link btn-info" th:href="@{/subject/create}">
-            <h2>Add</h2>
-        </a>
-    </nobr>
+            <li><a th:href="@{/logout}"><span>
+				<form th:action="@{/logout}" method="post">
+
+				<input type="submit" value="Sign Out" class="btn-link"/>
+			</form></span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container text-center">
+
+
+    <h1>SUBJECT LIST</h1>
+
+    <div>
+        <nobr>
+            <a class="btn-link btn-info" th:href="@{/subject/create}">
+                <h2>Add</h2>
+            </a>
+        </nobr>
+    </div>
+    <br/><br/>
+
+    <div>
+        <table class="table table-striped table-bordered table-dark text-center">
+            <tr>
+                <th class="text-center">Subject Id</th>
+                <th class="text-center">Subject</th>
+                <th class="text-center">Duration</th>
+                <th class="text-center">Subject Teacher</th>
+                <th class="text-center">Edit</th>
+
+            </tr>
+            <tr th:each="subject : ${subjects}">
+                <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}" th:utext="${subject.id}">...</a>
+                </td>
+                <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}"
+                       th:utext="${subject.name}">...</a>
+                </td>
+                <td th:utext="${subject.duration}">...</td>
+                <td th:utext="${subject.teacher}">...</td>
+                <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+    <br/><br/>
 </div>
-<br/><br/>
 
-<div>
-    <table class="table table-striped table-bordered table-dark text-center">
-        <tr>
-            <th class="text-center">Subject Id</th>
-            <th class="text-center">Subject</th>
-            <th class="text-center">Duration</th>
-            <th class="text-center">Subject Teacher</th>
-            <th class="text-center">Edit</th>
 
-        </tr>
-        <tr th:each="subject : ${subjects}">
-            <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}" th:utext="${subject.id}">...</a></td>
-            <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}" th:utext="${subject.name}">...</a>
-            </td>
-            <td th:utext="${subject.duration}">...</td>
-            <td th:utext="${subject.teacher.name}">...</td>
-            <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a></td>
-        </tr>
-    </table>
-</div>
-<br/><br/>
 </div>
 
 

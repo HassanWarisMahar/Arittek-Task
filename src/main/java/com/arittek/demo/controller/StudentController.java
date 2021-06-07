@@ -2,8 +2,12 @@ package com.arittek.demo.controller;
 
 import com.arittek.demo.exceptions.BadResourceException;
 import com.arittek.demo.exceptions.ResourceNotFoundException;
+import com.arittek.demo.model.Developer;
+import com.arittek.demo.model.Skill;
 import com.arittek.demo.model.Student;
 import com.arittek.demo.model.Subject;
+import com.arittek.demo.repository.DeveloperRepository;
+import com.arittek.demo.repository.SkillRepository;
 import com.arittek.demo.services.StudentService;
 import com.arittek.demo.services.SubjectService;
 import org.slf4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -26,6 +31,18 @@ public class StudentController {
     StudentService studentService;
     @Autowired
     SubjectService subjectService;
+
+
+//    @RequestMapping("/view/{id}")
+//    public String student(@PathVariable Long id, Model model) throws ResourceNotFoundException {
+//
+//        model.addAttribute("student", studentService.findById(id));
+//        model.addAttribute("subjects", subjectService.findAll());
+//        System.out.println("From get mapping all skill  " + id);
+//        return "student/student";
+//
+//    }
+
 
     @GetMapping(value = {"/view"})
     public String getStudents(Model model) {
@@ -41,15 +58,40 @@ public class StudentController {
     @GetMapping(value = "/view/{studentId}")
     public String getStudentById(Model model, @PathVariable long studentId) {
         Student student = null;
+        List<Subject> subjects = null;
+
         try {
 
             student = studentService.findById(studentId);
+            subjects = subjectService.findAll();
             model.addAttribute("student", student);
+            model.addAttribute("subjects", subjects);
+
 
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Student not found");
         }
         return "student/student";
+    }
+
+    @PostMapping(value = "student/{studentId}/subjects")
+    String addStudentToSubject(
+            @RequestBody Long subjectId,
+            @PathVariable Long studentId, Model model
+    ) throws ResourceNotFoundException {
+        System.out.print(studentId + "IDS " + subjectId);
+        subjectService.assignStudentSubject(subjectId, studentId);
+        try {
+            model.addAttribute("student", studentService.findById(studentId));
+            model.addAttribute("subjects", subjectService.findAll());
+            return "redirect:/student/view/" + studentId;
+
+        } catch (ResourceNotFoundException e) {
+            e.printStackTrace();
+            model.addAttribute("students", studentService.findAll());
+            return "student/student-list";
+        }
+
     }
 
     @GetMapping(value = {"/create"})
@@ -67,11 +109,11 @@ public class StudentController {
 
     @PostMapping(value = "/create")
     public String addStudent(Model model,
-                             @ModelAttribute("student, subject") Student student,Subject subject) {
+                             @ModelAttribute("student") Student student) {
         try {
 
             Student newStudent = studentService.save(student);
-            subjectService.assignStudentSubject(subject.getId(),student.getId());
+            //subjectService.assignStudentSubject(subject.getId(), student.getId());
 
             return "redirect:/student/view/" + String.valueOf(newStudent.getId());
 

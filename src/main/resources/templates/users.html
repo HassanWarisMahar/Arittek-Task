@@ -17,6 +17,15 @@
         <ul class="nav navbar-nav">
             <li><a th:href="@{/contacts}"> Contacts</a></li>
             <li><a th:href="@{/users}"> Users</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">More Options
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/teacher/view}">Teachers</a></li>
+                    <li><a th:href="@{/subject/view}">Subjects</a></li>
+                    <li><a th:href="@{/student/view}">Students</a></li>
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span>[[${#request.userPrincipal.principal.fullName}]]</a>
@@ -30,6 +39,8 @@
         </ul>
     </div>
 </nav>
+
+
 <div class="container text-center">
 
     <div>

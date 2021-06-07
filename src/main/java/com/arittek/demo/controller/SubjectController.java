@@ -28,16 +28,16 @@ public class SubjectController {
     @GetMapping(value = {"/view"})
     public String getSubjects(Model model) {
 
-        List<Subject> subjects = subjectService.findAll();
-        model.addAttribute("subjects", subjects);
+        List<Subject> subject = subjectService.findAll();
+        model.addAttribute("subjects", subject);
 
-        System.out.println("Object printing " + subjects);
+        System.out.println("Object printing " + subject);
         return "subject/subject-list";
 
     }
 
-    @GetMapping(value = "/view/{subejctId}")
-    public String getSubejctById(Model model, @PathVariable long subjectId) {
+    @GetMapping(value = "/view/{subjectId}")
+    public String getSubjectById(Model model, @PathVariable long subjectId) {
         Subject subject = null;
         try {
 
@@ -116,35 +116,35 @@ public class SubjectController {
         }
     }
 
-    @GetMapping(value = {"/{subejctId}/delete"})
-    public String showDeleteSubejctById(
-            Model model, @PathVariable long subejctId) {
-        Subject subejct = null;
+    @GetMapping(value = {"/{subjectId}/delete"})
+    public String showDeleteSubjectById(
+            Model model, @PathVariable long subjectId) {
+        Subject subject = null;
         try {
-            subejct = subjectService.findById(subejctId);
+            subject = subjectService.findById(subjectId);
 
             model.addAttribute("allowDelete", true);
-            model.addAttribute("subejct", subejct);
+            model.addAttribute("subject", subject);
         } catch (ResourceNotFoundException ex) {
-            model.addAttribute("errorMessage", "subejct not found ");
+            model.addAttribute("errorMessage", "subject not found ");
         }
-        return "subejct/subejct";
+        return "subject/subject";
     }
 
-    @PostMapping(value = {"/{subejctId}/delete"})
-    public String deletesubejctById(
+    @PostMapping(value = {"/{subjectId}/delete"})
+    public String deleteSubjectById(
             Model model, @PathVariable long subjectId) {
         try {
 
             subjectService.deleteById(subjectId);
-            return "redirect:/subejct/view";
+            return "redirect:/subject/view";
 
         } catch (ResourceNotFoundException ex) {
 
             String errorMessage = ex.getMessage();
             logger.error(errorMessage);
             model.addAttribute("errorMessage", errorMessage);
-            return "subejct/subejct";
+            return "subject/subject";
         }
     }
 

@@ -32,7 +32,7 @@ public class AppController {
 
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "login";
-        }else{
+        } else {
             return "redirect:/contacts";
         }
 
@@ -41,13 +41,13 @@ public class AppController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
 
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("user", new User());
         model.addAttribute("success", true);
-        if(authentication==null || authentication instanceof AnonymousAuthenticationToken){
-            model.addAttribute("authorized",false);
-        }else{
-            model.addAttribute("authorized",true);
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            model.addAttribute("authorized", false);
+        } else {
+            model.addAttribute("authorized", true);
         }
         return "signup_form";
     }
@@ -58,22 +58,22 @@ public class AppController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        User userFromDb=null;
+        User userFromDb = null;
 
         userFromDb = userRepo.findByEmail(user.getEmail());
         String response = null;
-        if(userFromDb != null){
-            logger.info(" User Email changing "+userFromDb.getEmail());
+        if (userFromDb != null) {
+            logger.info(" User Email changing " + userFromDb.getEmail());
             model.addAttribute("user-already-exists", user);
             model.addAttribute("isExistsUser", true);
-            model.addAttribute("emailAlreadyExists","This Email is already registered ! "+userFromDb.getEmail());
-            response=  "signup_form";
+            model.addAttribute("emailAlreadyExists", "This Email is already registered ! " + userFromDb.getEmail());
+            response = "signup_form";
 
-        }else{
+        } else {
 
             userRepo.save(user);
-          //  model.addAttribute("User","");
-            response= "register_success";
+            //  model.addAttribute("User","");
+            response = "register_success";
         }
         return response;
     }
