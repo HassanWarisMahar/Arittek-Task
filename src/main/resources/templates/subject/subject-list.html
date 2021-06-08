@@ -75,8 +75,24 @@
                        th:utext="${subject.name}">...</a>
                 </td>
                 <td th:utext="${subject.duration}">...</td>
-                <td th:utext="${subject.teacher.name}">...</td>
+                <!--                <td th:utext="${subject.teacher}">...</td>-->
 
+                <td>
+                    <div>
+
+                        <a th:each="subject : ${subject.teacher}" th:utext="${subject.name}"> </a>
+
+                    </div>
+                </td>
+                <!--                <td>-->
+                <!--                    <a th:href="@{/subject/view/{subjecId}(subjectId=${subject.id})}">-->
+                <!--                        <span>-->
+                <!--				            <form th:action="@{/subject/view/{subjecId}(subjectId=${subject.id})}" method="post">-->
+                <!--		        		        <input type="submit" value="" class="btn-link"/>-->
+                <!--			                </form>-->
+                <!--                        </span>-->
+                <!--                    </a>-->
+                <!--                </td>-->
                 <td><a th:href="@{/subject/view/{subjectId}(subjectId=${subject.id})}">View</a>
                 <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a></td>
             </tr>

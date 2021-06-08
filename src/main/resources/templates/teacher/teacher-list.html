@@ -60,7 +60,7 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Phone</th>
                 <th class="text-center">Subject</th>
-
+                <th class="text-center">View</th>
                 <th class="text-center">Edit</th>
             </tr>
             <tr th:each="teacher : ${teachers}">
@@ -79,6 +79,7 @@
 
                     </div>
                 </td>
+                <td><a th:href="@{/teacher/view/{subjectId}(subjectId=${teacher.id})}">View</a>
                 <td><a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a></td>
             </tr>
         </table>
