@@ -32,7 +32,7 @@ public class StudentController {
     @Autowired
     SubjectService subjectService;
 
-
+//
 //    @RequestMapping("/view/{id}")
 //    public String student(@PathVariable Long id, Model model) throws ResourceNotFoundException {
 //
@@ -66,27 +66,31 @@ public class StudentController {
             subjects = subjectService.findAll();
             model.addAttribute("student", student);
             model.addAttribute("subjects", subjects);
+            return "student/student";
 
 
         } catch (ResourceNotFoundException ex) {
             model.addAttribute("errorMessage", "Student not found");
+            return "student/student";
         }
-        return "student/student";
+
     }
 
-    @PostMapping(value = "student/{studentId}/subjects")
+    @PostMapping(value = "/{studentId}/subjects")
     String addStudentToSubject(
-            @RequestBody Long subjectId,
+            @RequestParam Long subjectId,
             @PathVariable Long studentId, Model model
     ) throws ResourceNotFoundException {
         System.out.print(studentId + "IDS " + subjectId);
         subjectService.assignStudentSubject(subjectId, studentId);
         try {
             model.addAttribute("student", studentService.findById(studentId));
-            model.addAttribute("subjects", subjectService.findAll());
+            model.addAttribute("subject", subjectService.findAll());
+            System.out.println("From try ");
             return "redirect:/student/view/" + studentId;
 
         } catch (ResourceNotFoundException e) {
+            System.out.println("This works in the catch ");
             e.printStackTrace();
             model.addAttribute("students", studentService.findAll());
             return "student/student-list";

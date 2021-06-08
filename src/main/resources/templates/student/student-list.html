@@ -41,7 +41,6 @@
     </div>
 </nav>
 
-
 <div class="container text-center">
 
     <h1>STUDENT LIST</h1>
@@ -64,36 +63,35 @@
                 <th class="text-center">Roll No</th>
                 <th class="text-center">Grade</th>
                 <th class="text-center">Subjects</th>
+                <th class="text-center">View</th>
                 <th class="text-center">Edit</th>
             </tr>
             <tr th:each="student : ${students}">
-                <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}" th:utext="${student.id}">...</a>
+                <td class="text-center"><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}"
+                                           th:utext="${student.id}">...</a>
                 </td>
-                <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}"
-                       th:utext="${student.name}">...</a>
+                <td class="text-center"><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}"
+                                           th:utext="${student.name}">...</a>
                 </td>
-                <td th:utext="${student.age}">...</td>
-                <td th:utext="${student.rollNo}">...</td>
-                <td th:utext="${student.grade}">...</td>
+                <td class="text-center" th:utext="${student.age}">...</td>
+                <td class="text-center" th:utext="${student.rollNo}">...</td>
+                <td class="text-center" th:utext="${student.grade}">...</td>
 
-                <td>
+                <td class="text-center">
                     <div>
-
-                        <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>
-
+                        <span th:each="subject : ${student.subjects}">
+                            <p th:utext="${subject.name}"></p> </span>
                     </div>
                 </td>
-                <td><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a></td>
+
+                <td class="text-center"><a th:href="@{/student/view/{studentId}(studentId=${student.id})}">View</td>
+                <td class="text-center"><a th:href="@{/student/{studentId}/edit(studentId=${student.id})}">Edit</a></td>
             </tr>
         </table>
     </div>
     <br/><br/>
 </div>
-
-
 </div>
-
-
 </body>
 
 </html>

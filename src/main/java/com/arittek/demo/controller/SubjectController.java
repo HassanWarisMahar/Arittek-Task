@@ -147,6 +147,12 @@ public class SubjectController {
             return "subject/subject";
         }
     }
+    @GetMapping(value = {"/student/subject/view/(id)"})
+    public String redirect(@PathVariable long id) {
+
+            return "redirect:/subject/view"+id;
+
+    }
 
     @GetMapping
     List<Subject> getSubjects() {
