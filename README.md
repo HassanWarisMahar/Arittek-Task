@@ -63,6 +63,9 @@ https://www.codejava.net/frameworks/spring-boot/spring-thymeleaf-form-multi-chec
 
 
 //Teranary Assosciation using JPA 
-https://coderanch.com/t/218811/databases/ManyToMany-ternary-Relationship
+https://coderanch.com/t/218811/databases/ManyToMany-ternary-Relationship\
+
+Automatic DEleion problem 
+https://discourse.hibernate.org/t/why-does-the-jpa-manytomany-association-remove-all-entries-and-reinserts-the-remaining-ones-back-upon-modifications/2252/6
 
 
