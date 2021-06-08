@@ -68,4 +68,7 @@ https://coderanch.com/t/218811/databases/ManyToMany-ternary-Relationship\
 Automatic DEleion problem 
 https://discourse.hibernate.org/t/why-does-the-jpa-manytomany-association-remove-all-entries-and-reinserts-the-remaining-ones-back-upon-modifications/2252/6
 
+Hibernate
+https://vladmihalcea.com/the-best-way-to-map-a-many-to-many-association-with-extra-columns-when-using-jpa-and-hibernate/
+
 
