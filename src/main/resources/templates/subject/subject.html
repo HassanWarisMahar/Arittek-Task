@@ -44,30 +44,54 @@
 <a th:href="@{/subject/view}">Back to Subject List</a>
 <br/><br/>
 <div th:if="${subject}">
-    <table border="0">
-        <tr>
-            <td>ID</td>
-            <td>:</td>
-            <td th:utext="${subject.id}">...</td>
-        </tr>
-        <tr>
-            <td>Subject</td>
-            <td>:</td>
-            <td th:utext="${subject.name}">...</td>
-        </tr>
-        <tr>
-            <td>Duration</td>
-            <td>:</td>
-            <td th:utext="${subject.duration}">...</td>
-        </tr>
-        <tr>
-            <td>Teacher</td>
-            <td>:</td>
-            <td th:utext="${subject.teacher}">...</td>
-        </tr>
+
+    <form class="form-horizontal" th:action="@{/subject/{id}/teacher(id=${subject.id})}" method="post"
+          enctype="multipart/form-data">
 
 
-    </table>
+        <table border="0">
+            <tr>
+                <td>ID</td>
+                <td>:</td>
+                <td th:utext="${subject.id}">...</td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td>:</td>
+                <td th:utext="${subject.name}">...</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
+                <td>:</td>
+                <td th:utext="${subject.duration}">...</td>
+            </tr>
+            <tr>
+                <td>Teacher</td>
+                <td>:</td>
+                <td>
+                    <div th:each="teacher : ${subject.teacher}">
+                        <span class="text-center" th:text="${teacher.name}"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-2">
+                <div class="input-group">
+                    <select name="teacherId" class="form-control">
+                        <option th:each="teacher : ${teachers}"
+                                th:value="${teacher.id}"
+                                th:text="${teacher.name}">
+                        </option>
+                    </select>
+                    <span class="input-group-btn">
+									<button type="submit" class="btn btn-default">Add Teacher</button>
+								</span>
+                </div>
+            </div>
+        </div>
+    </form>
     <br/><br/>
     <div th:if="not ${allowDelete}">
         <a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a> |

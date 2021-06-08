@@ -64,7 +64,7 @@
                 <th class="text-center">Subject</th>
                 <th class="text-center">Duration</th>
                 <th class="text-center">Subject Teacher</th>
-                <th  class="text-center">View</th>
+                <th class="text-center">View</th>
                 <th class="text-center">Edit</th>
 
             </tr>
@@ -75,7 +75,7 @@
                        th:utext="${subject.name}">...</a>
                 </td>
                 <td th:utext="${subject.duration}">...</td>
-                <td th:utext="${subject.teacher}">...</td>
+                <td th:utext="${subject.teacher.name}">...</td>
 
                 <td><a th:href="@{/subject/view/{subjectId}(subjectId=${subject.id})}">View</a>
                 <td><a th:href="@{/subject/{subjectId}/edit(subjectId=${subject.id})}">Edit</a></td>

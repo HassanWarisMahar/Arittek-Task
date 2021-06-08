@@ -86,25 +86,25 @@
                 <td>:</td>
                 <td><input type="text" th:field="*{grade}" size="50"/></td>
             </tr>
-<!--            <tr>-->
-<!--                <td>Subject</td>-->
-<!--                <td>:</td>-->
-<!--                <td>-->
-<!--                    <div>-->
-<!--                        <select class="selectpicker" multiple data-live-search="true">-->
-<!--                            <option th:each="subject :${subjectList}" th:value="${subject.id}" th:field="*{subjects}"-->
-<!--                                    th:utext="${subject.name}"></option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <div>-->
+            <!--            <tr>-->
+            <!--                <td>Subject</td>-->
+            <!--                <td>:</td>-->
+            <!--                <td>-->
+            <!--                    <div>-->
+            <!--                        <select class="selectpicker" multiple data-live-search="true">-->
+            <!--                            <option th:each="subject :${subjectList}" th:value="${subject.id}" th:field="*{subjects}"-->
+            <!--                                    th:utext="${subject.name}"></option>-->
+            <!--                        </select>-->
+            <!--                    </div>-->
+            <!--                </td>-->
+            <!--                <td>-->
+            <!--                    <div>-->
 
-<!--                        <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>-->
+            <!--                        <a th:each="subject : ${student.subjects}" th:utext="${subject.name}"> </a>-->
 
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
+            <!--                    </div>-->
+            <!--                </td>-->
+            <!--            </tr>-->
         </table>
         <input type="submit" th:value="${add} ? 'Create' : 'Update'"/>
     </form>

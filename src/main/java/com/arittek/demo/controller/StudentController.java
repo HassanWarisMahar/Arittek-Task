@@ -81,8 +81,10 @@ public class StudentController {
             @RequestParam Long subjectId,
             @PathVariable Long studentId, Model model
     ) throws ResourceNotFoundException {
-        System.out.print(studentId + "IDS " + subjectId);
+
+        System.out.print(studentId + " IDs " + subjectId);
         subjectService.assignStudentSubject(subjectId, studentId);
+
         try {
             model.addAttribute("student", studentService.findById(studentId));
             model.addAttribute("subject", subjectService.findAll());
@@ -90,6 +92,7 @@ public class StudentController {
             return "redirect:/student/view/" + studentId;
 
         } catch (ResourceNotFoundException e) {
+
             System.out.println("This works in the catch ");
             e.printStackTrace();
             model.addAttribute("students", studentService.findAll());

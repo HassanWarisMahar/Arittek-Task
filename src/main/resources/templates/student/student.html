@@ -85,8 +85,7 @@
             <label class="col-lg-2 control-label">Subjects</label>
             <div class="col-lg-10">
                 <div th:each="sbj : ${student.subjects}">
-                    <span class="text-center" th:text="${sbj.name}"/> : - <span class="text-center"
-                                                                                th:text="${sbj.duration}"/>
+                    <span class="text-center" th:text="${sbj.name}"/>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ public class Subject {
     Long id;
 
     private String name;
-    private String  duration;
+    private String duration;
 
 
     @JsonIgnore
@@ -38,7 +38,6 @@ public class Subject {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
-
 
 
 }

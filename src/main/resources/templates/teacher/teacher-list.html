@@ -70,15 +70,15 @@
                        th:utext="${teacher.name}">...</a>
                 </td>
                 <td th:utext="${teacher.phone}">...</td>
-                <td th:utext="${teacher.subjects}">...</td>
+<!--                <td th:utext="${teacher.subjects}">...</td>-->
 
-                <!--            <td>-->
-                <!--                <div>-->
+                <td>
+                    <div>
 
-                <!--                    <a th:each="subject : ${teacher.subjects}" th:utext="${subject.name}"> </a>-->
+                        <a th:each="subject : ${teacher.subjects}" th:utext="${subject.name}"> </a>
 
-                <!--                </div>-->
-                <!--            </td>-->
+                    </div>
+                </td>
                 <td><a th:href="@{/teacher/{teacherId}/edit(teacherId=${teacher.id})}">Edit</a></td>
             </tr>
         </table>

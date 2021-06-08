@@ -43,7 +43,7 @@
 </nav>
 
 <div class="container signup-form ">
-    <h1  th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'"/>
+    <h1 th:text="${add} ? 'Create a Contact:' : 'Edit a Contact:'"/>
     <a th:href="@{/contacts}">Back to Contact List</a>
     <br/><br/>
     <form th:action="${add} ? @{/contacts/add} : @{/contacts/{contactId}/edit(contactId=${contact.id})}"
