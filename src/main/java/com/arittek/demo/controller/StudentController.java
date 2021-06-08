@@ -203,15 +203,4 @@ public class StudentController {
         }
     }
 
-    @PutMapping(value = "update")
-    String updateStudent(@RequestBody Student student) throws BadResourceException, ResourceNotFoundException {
-        return studentService.update(student);
-    }
-
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable(name = "id") Long studentId) throws ResourceNotFoundException {
-        String message = studentService.deleteById(studentId);
-        return new ResponseEntity<>(message, HttpStatus.OK);
-    }
-
 }
