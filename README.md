@@ -71,4 +71,8 @@ https://discourse.hibernate.org/t/why-does-the-jpa-manytomany-association-remove
 Hibernate
 https://vladmihalcea.com/the-best-way-to-map-a-many-to-many-association-with-extra-columns-when-using-jpa-and-hibernate/
 
+JWT
+https://programming.vip/docs/5da0af37bb08b.html
+
+
 
