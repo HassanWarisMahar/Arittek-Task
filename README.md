@@ -79,4 +79,7 @@ https://www.codeproject.com/Articles/1234687/Spring-MVC-Application-With-Spring-
 Spring App Security 
 https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot
 
+//JWT
+https://bezkoder.com/spring-boot-jwt-authentication/
+
 
