@@ -74,5 +74,8 @@ https://vladmihalcea.com/the-best-way-to-map-a-many-to-many-association-with-ext
 JWT
 https://programming.vip/docs/5da0af37bb08b.html
 
+JWT 
+https://www.codeproject.com/Articles/1234687/Spring-MVC-Application-With-Spring-Security-and-Sp
+
 
 
