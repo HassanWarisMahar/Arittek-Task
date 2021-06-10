@@ -81,5 +81,7 @@ https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot
 
 //JWT
 https://bezkoder.com/spring-boot-jwt-authentication/
+//YE kesi muhabbat hai with Spring security + Thymeleaf
+https://mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/
 
 
