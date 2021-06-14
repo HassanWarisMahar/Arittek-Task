@@ -85,5 +85,5 @@ https://bezkoder.com/spring-boot-jwt-authentication/
 https://mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/
 //Sample JWT+spring+mysql
 https://github.com/bezkoder/spring-boot-spring-security-jwt-authentication
-
-
+//Using JWt + thymeleaf in sring boot appp 
+https://github.com/stove99/springboot-thymeleaf-jwt
