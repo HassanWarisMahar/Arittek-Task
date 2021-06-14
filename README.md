@@ -32,6 +32,8 @@ https://stackoverflow.com/questions/5706437/whats-the-difference-between-inner-j
 
 //Controller Advice
 https://github.com/jovannypcg/exception_handler
+//RND
+
 
 
 Login System
@@ -89,3 +91,4 @@ https://github.com/bezkoder/spring-boot-spring-security-jwt-authentication
 https://github.com/stove99/springboot-thymeleaf-jwt
 //Sample Source for reading RND 
 https://medium.com/@xoor/jwt-authentication-service-44658409e12c
+//RND On https://developer.okta.com/blog/2018/10/05/build-a-spring-boot-app-with-user-authentication
