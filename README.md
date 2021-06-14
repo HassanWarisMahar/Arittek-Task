@@ -92,3 +92,5 @@ https://github.com/stove99/springboot-thymeleaf-jwt
 //Sample Source for reading RND 
 https://medium.com/@xoor/jwt-authentication-service-44658409e12c
 //RND On https://developer.okta.com/blog/2018/10/05/build-a-spring-boot-app-with-user-authentication
+
+https://www.geeksforgeeks.org/hmac-algorithm-in-computer-network/
