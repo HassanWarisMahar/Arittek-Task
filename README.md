@@ -87,3 +87,5 @@ https://mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/
 https://github.com/bezkoder/spring-boot-spring-security-jwt-authentication
 //Using JWt + thymeleaf in sring boot appp 
 https://github.com/stove99/springboot-thymeleaf-jwt
+//Sample Source for reading RND 
+https://medium.com/@xoor/jwt-authentication-service-44658409e12c
