@@ -52,3 +52,7 @@ Database backup
 https://github.com/stove99/springboot-thymeleaf-jwt
 
 
+//Stateless vs Statfull
+https://www.xenonstack.com/insights/stateful-and-stateless-applications/
+
+
