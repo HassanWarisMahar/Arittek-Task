@@ -33,9 +33,6 @@ https://stackoverflow.com/questions/5706437/whats-the-difference-between-inner-j
 //Controller Advice
 https://github.com/jovannypcg/exception_handler
 //RND
-
-
-
 Login System
 Admin Panel
 User management
@@ -54,5 +51,6 @@ https://github.com/stove99/springboot-thymeleaf-jwt
 
 //Stateless vs Statfull
 https://www.xenonstack.com/insights/stateful-and-stateless-applications/
-
+//RND Link
+https://github.com/maurofokker/spring-security-demo.git
 
