@@ -55,4 +55,6 @@ https://www.xenonstack.com/insights/stateful-and-stateless-applications/
 https://github.com/maurofokker/spring-security-demo.git
 //*****//
 https://www.freecodecamp.org/news/how-to-setup-jwt-authorization-and-auth/ion-in-spring/
+************
+https://www.javatips.net/api/org.springframework.security.authentication.badcredentialsexception
 
