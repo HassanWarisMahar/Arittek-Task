@@ -62,7 +62,9 @@ public class AppController {
 
         userFromDb = userRepo.findByEmail(user.getEmail());
         String response = null;
+
         if (userFromDb != null) {
+
             logger.info(" User Email changing " + userFromDb.getEmail());
             model.addAttribute("user-already-exists", user);
             model.addAttribute("isExistsUser", true);
