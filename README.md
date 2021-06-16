@@ -59,4 +59,6 @@ https://www.freecodecamp.org/news/how-to-setup-jwt-authorization-and-auth/ion-in
 https://www.javatips.net/api/org.springframework.security.authentication.badcredentialsexception
 ************
 https://www.javatips.net/api/spring-boot-security-example-master/src/main/java/com/futureprocessing/spring/infrastructure/security/BackendAdminUsernamePasswordAuthenticationProvider.java
+***********
+https://stackoverflow.com/questions/65296773/thymeleaf-extras-security-doesnt-work-with-spring-security
 
