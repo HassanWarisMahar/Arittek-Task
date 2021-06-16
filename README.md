@@ -57,4 +57,6 @@ https://github.com/maurofokker/spring-security-demo.git
 https://www.freecodecamp.org/news/how-to-setup-jwt-authorization-and-auth/ion-in-spring/
 ************
 https://www.javatips.net/api/org.springframework.security.authentication.badcredentialsexception
+************
+https://www.javatips.net/api/spring-boot-security-example-master/src/main/java/com/futureprocessing/spring/infrastructure/security/BackendAdminUsernamePasswordAuthenticationProvider.java
 
