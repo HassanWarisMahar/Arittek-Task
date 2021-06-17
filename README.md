@@ -1,7 +1,7 @@
 # Arittek-Task
 How to Run this project.
 
-Running this project You dneed follow bellow instrcuctions.
+Running this project You need follow bellow instrcuctions.
 
 Create Database in MYSQL Server 
 Name it as "TestDb" or your desired name. Note do change that in application.properties as well.
