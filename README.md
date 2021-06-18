@@ -61,4 +61,6 @@ https://www.javatips.net/api/org.springframework.security.authentication.badcred
 https://www.javatips.net/api/spring-boot-security-example-master/src/main/java/com/futureprocessing/spring/infrastructure/security/BackendAdminUsernamePasswordAuthenticationProvider.java
 ***********
 https://stackoverflow.com/questions/65296773/thymeleaf-extras-security-doesnt-work-with-spring-security
+*********************
+https://golb.hplar.ch/2019/05/stateless.html
 
