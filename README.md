@@ -63,4 +63,6 @@ https://www.javatips.net/api/spring-boot-security-example-master/src/main/java/c
 https://stackoverflow.com/questions/65296773/thymeleaf-extras-security-doesnt-work-with-spring-security
 *********************
 https://golb.hplar.ch/2019/05/stateless.html
+**********
+https://programming.vip/docs/5da0af37bb08b.html
 
